@@ -1,0 +1,25 @@
+@keyframes blink {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+slm-typewriter {
+    position: relative;
+}
+
+slm-typewriter::after {
+    animation: blink 0.5s linear infinite;
+    border-right: 4px solid currentColor;
+    content: '';
+    display: block;
+    height: calc(100% - 2px);
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+}

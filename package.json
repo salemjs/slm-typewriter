@@ -1,0 +1,58 @@
+{
+    "name": "slm-typewriter",
+    "version": "1.0.2",
+    "type": "module",
+    "description": "Easy to use vanilla js webcomponent to add type writer effect to your texts",
+    "main": "src/typewriter.js",
+    "directories": {
+        "src": "src"
+    },
+    "scripts": {
+        "fix:js": "eslint --fix ./src/",
+        "fix:format": "prettier --write .",
+        "lint": "eslint ./src/",
+        "minify:js": "terser --config-file .terser.json ./dist/slm-typewriter.js -o ./dist/slm-typewriter.min.js --source-map",
+        "minify:css": "css-minify --file ./dist/slm-typewriter.css --output ./dist/",
+        "prebuild": "npm run lint",
+        "build:js": "npm run fix:format && rollup --config && npm run minify:js",
+        "build:css": "cp ./src/typewriter.css ./dist/slm-typewriter.css && npm run minify:css",
+        "build": "npm run build:js && npm run build:css",
+        "postbuild:js": "cp ./dist/slm-typewriter.min.js ./examples/slm-typewriter.min.js",
+        "postbuild:css": "cp ./dist/slm-typewriter.min.css ./examples/slm-typewriter.min.css",
+        "postbuild": "npm run postbuild:js && npm run postbuild:css && npm version patch --no-git-tag-version",
+        "prepare": "husky install"
+    },
+    "lint-staged": {
+        "test/*.js": [
+            "prettier --write",
+            "git add"
+        ],
+        "src/*.js": [
+            "eslint",
+            "prettier --write",
+            "git add"
+        ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/salemjs/slm-typewriter.git"
+    },
+    "author": "Sandor Huszagh",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/salemjs/slm-typewriter/issues",
+        "email": "support@salemjs.com"
+    },
+    "homepage": "https://salemjs.com",
+    "devDependencies": {
+        "css-minify": "^2.0.0",
+        "eslint": "^7.32.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-import": "^2.24.2",
+        "husky": "^7.0.2",
+        "lint-staged": "^11.1.2",
+        "prettier": "2.3.2",
+        "rollup": "^2.56.3",
+        "terser": "^5.7.2"
+    }
+}
