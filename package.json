@@ -1,8 +1,8 @@
 {
     "name": "slm-typewriter",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "type": "module",
-    "description": "Easy to use vanilla js webcomponent to add type writer effect to your texts",
+    "description": "Easy to use vanilla js webcomponents to add type writer effect to your texts",
     "main": "src/typewriter.js",
     "directories": {
         "src": "src"

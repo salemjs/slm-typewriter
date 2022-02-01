@@ -1,5 +1,5 @@
 export default {
-    input: 'src/typewriter.js',
+    input: 'src/main.js',
     treeshake: false,
     output: {
         file: 'dist/slm-typewriter.js',
