@@ -3,7 +3,7 @@
     "version": "1.1.2",
     "type": "module",
     "description": "Lean (~400byte min+gzip) and easy to use vanilla js web components to add typewriter effect to your texts",
-    "main": "src/typewriter.js",
+    "main": "src/all.js",
     "directories": {
         "src": "src"
     },
