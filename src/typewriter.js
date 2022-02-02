@@ -1,4 +1,4 @@
-const DELAY_ON_TYPING = 120;
+const WAIT_BETWEEN_STEPS = 120;
 
 class SlmTypewriter {
     constructor(element) {
@@ -6,40 +6,41 @@ class SlmTypewriter {
     }
 
     /**
-     * @private {function}
-     * @param {Number} milliseconds
+     * @public {function}
+     * @param {Number} ms
      * @return {Promise}
      */
-    delay(milliseconds) {
-        return new Promise((resolve) => setTimeout(resolve, milliseconds));
+    wait(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
     }
 
     /**
      * @async
-     * @private {function}
+     * @public {function}
      * @param {String} text
+     * @param {Number} waitAfterComplete
      */
-    async type(text) {
+    async type(text, waitAfterComplete) {
         const element = this._element;
-        const letters = Array.from(text);
-        for (const letter of letters) {
+        for (const letter of Array.from(text)) {
             element.textContent = element.textContent + letter;
-            await this.delay(DELAY_ON_TYPING);
+            await this.wait(WAIT_BETWEEN_STEPS);
         }
+        await this.wait(waitAfterComplete);
     }
 
     /**
      * @async
-     * @private {function}
+     * @public {function}
+     * @param {Number} waitAfterComplete
      */
-    async erase() {
+    async wipe(waitAfterComplete) {
         const element = this._element;
-        let text = element.textContent;
-        while (text.length > 0) {
-            text = text.slice(0, -1);
-            element.textContent = text;
-            await this.delay(DELAY_ON_TYPING);
+        while (element.textContent) {
+            element.textContent = element.textContent.slice(0, -1);
+            await this.wait(WAIT_BETWEEN_STEPS);
         }
+        await this.wait(waitAfterComplete);
     }
 }
 

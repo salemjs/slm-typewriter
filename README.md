@@ -1,6 +1,6 @@
-# &lt;slm-typewriter&gt; element
+# slm-typewriter elements
 
-Easy to use vanilla js web components to add typewriter effect to your texts. No additional dependencies are required.
+Minimalist (436byte minified+gzipped) and easy to use vanilla js web components to add typewriter effect to your texts. No additional dependencies are required.
 
 ## Usage
 
@@ -26,6 +26,10 @@ Browsers with native custom element support. I do not offer IE11 support, but yo
 -   Firefox
 -   Safari
 -   Microsoft Edge
+
+## Customisation
+
+These web components only support basic customisations, but I plan to make some improvements soon. If you need to do something more advanced, you can look at how the SlmTypewriter class is used and make your flavour.
 
 ## License
 

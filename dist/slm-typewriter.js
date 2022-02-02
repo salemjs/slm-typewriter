@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    const DELAY_ON_TYPING = 120;
+    const WAIT_BETWEEN_STEPS = 120;
 
     class SlmTypewriter {
         constructor(element) {
@@ -9,46 +9,47 @@
         }
 
         /**
-         * @private {function}
-         * @param {Number} milliseconds
+         * @public {function}
+         * @param {Number} ms
          * @return {Promise}
          */
-        delay(milliseconds) {
-            return new Promise((resolve) => setTimeout(resolve, milliseconds));
+        wait(ms) {
+            return new Promise((resolve) => setTimeout(resolve, ms));
         }
 
         /**
          * @async
-         * @private {function}
+         * @public {function}
          * @param {String} text
+         * @param {Number} waitAfterComplete
          */
-        async type(text) {
+        async type(text, waitAfterComplete) {
             const element = this._element;
-            const letters = Array.from(text);
-            for (const letter of letters) {
+            for (const letter of Array.from(text)) {
                 element.textContent = element.textContent + letter;
-                await this.delay(DELAY_ON_TYPING);
+                await this.wait(WAIT_BETWEEN_STEPS);
             }
+            await this.wait(waitAfterComplete);
         }
 
         /**
          * @async
-         * @private {function}
+         * @public {function}
+         * @param {Number} waitAfterComplete
          */
-        async erase() {
+        async wipe(waitAfterComplete) {
             const element = this._element;
-            let text = element.textContent;
-            while (text.length > 0) {
-                text = text.slice(0, -1);
-                element.textContent = text;
-                await this.delay(DELAY_ON_TYPING);
+            while (element.textContent) {
+                element.textContent = element.textContent.slice(0, -1);
+                await this.wait(WAIT_BETWEEN_STEPS);
             }
+            await this.wait(waitAfterComplete);
         }
     }
 
-    const DELAY_ON_START = 1500;
-    const DELAY_ON_COMPLETE = 2000;
-    const DELAY_ON_FINISH = 1500;
+    const WAIT_ON_START = 1500;
+    const WAIT_AFTER_TYPE = 2000;
+    const WAIT_AFTER_ERASE = 1500;
     const ITEMS_ATTRIBUTE_NAME = 'slm-items';
 
     /**
@@ -57,31 +58,18 @@
      * @return {Array<String>}
      */
     const itemsFromJsonAttr = function (element) {
-        if (!element.hasAttribute(ITEMS_ATTRIBUTE_NAME)) {
-            throw new Error('"' + ITEMS_ATTRIBUTE_NAME + '" is a required attribute');
-        }
         return JSON.parse(decodeURIComponent(element.getAttribute(ITEMS_ATTRIBUTE_NAME)));
     };
 
     class SlmTypewriterElement extends HTMLElement {
         async connectedCallback() {
-            this._typewriter = new SlmTypewriter(this);
-            await this._typewriter.delay(DELAY_ON_START);
-            this._start();
-        }
-
-        /**
-         * @async
-         * @private {function}
-         */
-        async _start() {
+            const typewriter = new SlmTypewriter(this);
+            await typewriter.wait(WAIT_ON_START);
             const items = itemsFromJsonAttr(this);
-            while (items.length > 0) {
-                await this._typewriter.type(items.shift());
-                await this._typewriter.delay(DELAY_ON_COMPLETE);
-                if (items.length != 0) {
-                    await this._typewriter.erase();
-                    await this._typewriter.delay(DELAY_ON_FINISH);
+            while (items.length) {
+                await typewriter.type(items.shift(), WAIT_AFTER_TYPE);
+                if (items.length) {
+                    await typewriter.wipe(WAIT_AFTER_ERASE);
                 }
             }
         }
@@ -90,23 +78,13 @@
 
     class SlmLoopTypewriterElement extends HTMLElement {
         async connectedCallback() {
-            this._typewriter = new SlmTypewriter(this);
-            await this._typewriter.delay(DELAY_ON_START);
-            this._start();
-        }
-
-        /**
-         * @async
-         * @private {function}
-         */
-        async _start() {
+            const typewriter = new SlmTypewriter(this);
+            await typewriter.wait(WAIT_ON_START);
             const items = itemsFromJsonAttr(this);
             while (true) {
                 for (const item of items) {
-                    await this._typewriter.type(item);
-                    await this._typewriter.delay(DELAY_ON_COMPLETE);
-                    await this._typewriter.erase();
-                    await this._typewriter.delay(DELAY_ON_FINISH);
+                    await typewriter.type(item, WAIT_AFTER_TYPE);
+                    await typewriter.wipe(WAIT_AFTER_ERASE);
                 }
             }
         }

@@ -4,11 +4,7 @@
         "drop_console": true
     },
     "mangle": {
-        "keep_classnames": true,
         "properties": {
-            "regex": "^_[^_]"
-        },
-        "keep_fnames": {
             "regex": "^_[^_]"
         }
     },
