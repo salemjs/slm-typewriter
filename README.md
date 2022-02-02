@@ -8,7 +8,7 @@ Lean (~400byte min+gzip) and easy to use vanilla js web components to add typewr
 
 To type the list of items once use the slm-typewriter bundle:
 
-`<slm-typewriter slm-items='["first", "the second", "this the third."]' />`
+`<slm-typewriter slm-items='["first", "the second", "this is the third."]' />`
 
 If you want it to be an infinite loop use the slm-loop-typewriter bundle:
 
