@@ -1,6 +1,6 @@
 const WAIT_BETWEEN_STEPS = 120;
 
-class SlmTypewriter {
+class SlmUtilTypewriter {
     constructor(element) {
         this._element = element;
     }
@@ -44,4 +44,4 @@ class SlmTypewriter {
     }
 }
 
-export {SlmTypewriter};
+export {SlmUtilTypewriter};
