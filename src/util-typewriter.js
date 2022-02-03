@@ -1,47 +1,22 @@
-const WAIT_BETWEEN_STEPS = 120;
-
-class SlmUtilTypewriter {
-    constructor(element) {
-        this._element = element;
+/**
+ * @async
+ * @public {function}
+ * @param {String} text
+ */
+const type = async function (element, text) {
+    const WAIT_BETWEEN_LETTERS = 130;
+    const DEFAULT_WAIT = 2000;
+    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    while (element.textContent) {
+        element.textContent = element.textContent.slice(0, -1);
+        await wait(WAIT_BETWEEN_LETTERS);
     }
-
-    /**
-     * @public {function}
-     * @param {Number} ms
-     * @return {Promise}
-     */
-    wait(ms) {
-        return new Promise((resolve) => setTimeout(resolve, ms));
+    await wait(DEFAULT_WAIT);
+    for (const letter of [...decodeURIComponent(text)]) {
+        element.textContent = element.textContent + letter;
+        await wait(WAIT_BETWEEN_LETTERS);
     }
+    await wait(DEFAULT_WAIT);
+};
 
-    /**
-     * @async
-     * @public {function}
-     * @param {String} text
-     * @param {Number} waitAfterComplete
-     */
-    async type(text, waitAfterComplete) {
-        const element = this._element;
-        for (const letter of Array.from(text)) {
-            element.textContent = element.textContent + letter;
-            await this.wait(WAIT_BETWEEN_STEPS);
-        }
-        await this.wait(waitAfterComplete);
-    }
-
-    /**
-     * @async
-     * @public {function}
-     * @param {Number} waitAfterComplete
-     */
-    async wipe(waitAfterComplete) {
-        const element = this._element;
-        while (element.textContent) {
-            element.textContent = element.textContent.slice(0, -1);
-            await this.wait(WAIT_BETWEEN_STEPS);
-        }
-        await this.wait(waitAfterComplete);
-    }
-}
-
-export {SlmUtilTypewriter};
+export {type};

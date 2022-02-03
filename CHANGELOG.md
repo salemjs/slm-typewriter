@@ -1,5 +1,13 @@
 # slm-typewriter changelog
 
+## 1.2.0 - 03/02/2022
+
+-   Do some code optimization to reduce the minified size to ~475byte (~330byte gzipped)
+-   Remove unnecessary attribute prefix
+-   The wiping logic is automatically erasing text now before typing the next one
+-   Fix decodeURIComponent logic
+-   Remove SlmUtilTypewriter class
+
 ## 1.1.2 - 02/02/2022
 
 -   Add multiple packages, so you don't need to pull in unused code. Individual bundles are ~30% less in size
