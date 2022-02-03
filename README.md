@@ -27,7 +27,7 @@ Browsers with native custom element support. I do not offer IE11 support, but yo
 
 ## Customisation
 
-This web component only supports basic customisations. If you need to do something more advanced, you can look at how my util-typewriter repository works and make your flavour.
+This web component only supports basic customisations. If you need to do something more advanced, you can look at how my [util-typewriter](https://github.com/salemjs/util-typewriter) repository works and make your flavour.
 
 ## License
 
