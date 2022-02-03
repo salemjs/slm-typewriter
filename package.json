@@ -1,12 +1,18 @@
 {
     "name": "slm-typewriter",
     "version": "1.2.0",
-    "type": "module",
     "description": "Lean (~330byte min+gzip) and easy to use vanilla js web components to add typewriter effect to your texts",
     "main": "src/all.js",
+    "module": "src/all.js",
     "directories": {
         "src": "src"
     },
+    "keywords": [
+        "component",
+        "client",
+        "browser",
+        "ui"
+    ],
     "scripts": {
         "fix:js": "eslint --fix ./src/",
         "fix:format": "prettier --write .",
@@ -39,7 +45,7 @@
         "type": "git",
         "url": "https://github.com/salemjs/slm-typewriter.git"
     },
-    "author": "Sandor Huszagh",
+    "author": "Sandor Huszagh <support@salemjs.com>",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/salemjs/slm-typewriter/issues",
