@@ -1,9 +1,9 @@
 {
     "name": "slm-typewriter",
-    "version": "1.2.0",
-    "description": "Lean (~330byte min+gzip) and easy to use vanilla js web components to add typewriter effect to your texts",
-    "main": "src/all.js",
-    "module": "src/all.js",
+    "version": "1.3.0",
+    "description": "It's small (330 bytes min+gzip) and simple to use. A vanilla js web component for adding a non-reapeating typewriter effect to your texts",
+    "main": "src/typewriter.js",
+    "module": "src/typewriter.js",
     "directories": {
         "src": "src"
     },
@@ -17,29 +17,15 @@
         "fix:js": "eslint --fix ./src/",
         "fix:format": "prettier --write .",
         "lint": "eslint ./src/",
-        "minify:js": "run-s minify:js-all minify:js-once minify:js-loop",
-        "minify:js-all": "terser --config-file .terser.json ./dist/slm-typewriter.all.js -o ./dist/slm-typewriter.all.min.js --source-map",
-        "minify:js-once": "terser --config-file .terser.json ./dist/slm-typewriter.js -o ./dist/slm-typewriter.min.js --source-map",
-        "minify:js-loop": "terser --config-file .terser.json ./dist/slm-loop-typewriter.js -o ./dist/slm-loop-typewriter.min.js --source-map",
+        "minify:js": "terser --config-file .terser.json ./dist/slm-typewriter.js -o ./dist/slm-typewriter.min.js --source-map",
         "minify:css": "css-minify --file ./dist/slm-typewriter.css --output ./dist/",
         "prebuild": "npm run lint",
-        "build:js": "run-s fix:format build:js-all build:js-once build:js-loop minify:js",
-        "build:js-all": "rollup --config rollup.config.all.js",
-        "build:js-once": "rollup --config rollup.config.once.js",
-        "build:js-loop": "rollup --config rollup.config.loop.js",
+        "build:js": "rollup --config rollup.config.js && npm run minify:js",
         "build:css": "cp ./src/typewriter.css ./dist/slm-typewriter.css && npm run minify:css",
-        "build": "npm run build:js && npm run build:css",
-        "postbuild:js": "cp ./dist/slm-typewriter.all.min.js ./examples/slm-typewriter.all.min.js",
+        "build": "run-s build:js build:css",
+        "postbuild:js": "cp ./dist/slm-typewriter.min.js ./examples/slm-typewriter.min.js",
         "postbuild:css": "cp ./dist/slm-typewriter.min.css ./examples/slm-typewriter.min.css",
-        "postbuild": "npm run postbuild:js && npm run postbuild:css && npm version patch --no-git-tag-version",
-        "prepare": "husky install"
-    },
-    "lint-staged": {
-        "src/*.js": [
-            "eslint",
-            "prettier --write",
-            "git add"
-        ]
+        "postbuild": "run-s postbuild:js postbuild:css"
     },
     "repository": {
         "type": "git",
@@ -57,8 +43,6 @@
         "eslint": "^7.32.0",
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-import": "^2.24.2",
-        "husky": "^7.0.2",
-        "lint-staged": "^11.1.2",
         "npm-run-all": "^4.1.5",
         "prettier": "2.3.2",
         "rollup": "^2.56.3",

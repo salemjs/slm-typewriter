@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <script src="slm-typewriter.all.min.js"></script>
+        <script src="slm-typewriter.min.js"></script>
         <link rel="stylesheet" href="slm-typewriter.min.css">
         <style>
             h2 {
@@ -15,19 +15,10 @@
             .text_bold {
                 font-weight: bold;
             }
-            .cursor_red::after {
-                color: #f32121;
-            }
         </style>
     </head>
     <body>
-        <h1>Examples</h1>
-        <h2>Typewriter effect types</h2>
-        <div>Is this <slm-typewriter items='["a test?", "a demo?", "the end?"]' /></div>
-        <div>Is this <slm-loop-typewriter items='["an %22infinite loop%22?", "a never ending story?"]' /></div>
-        <h2>Styling</h2>
-        <div>Is this <slm-typewriter style="color: #2196f3;" items='["blue?", "looks ok?"]' /></div>
-        <div>Is this <slm-loop-typewriter class="text_bold" items='["text bold?", "show in a loop?"]' /></div>
-        <div>Is this <slm-typewriter class="cursor_red" items='["cursor neat?", "cursor red?"]' /></div>
+        <h1>Example</h1>
+        <div>Is this <slm-typewriter class="text_bold" items='["a test?", "a demo?", "the end?"]' /></div>
     </body>
 </html>

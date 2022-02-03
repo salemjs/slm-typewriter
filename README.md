@@ -1,20 +1,14 @@
-# slm-typewriter elements
+# &lt;slm-typewriter&gt; element
 
-Lean (~330byte min+gzip) and easy to use vanilla js web components to add typewriter effect to your texts. No additional dependencies are required.
+It's small (330 bytes min+gzip) and simple to use. A vanilla js web component for adding a non-reapeating typewriter effect to your texts. No additional dependencies are required.
 
 ![Magic](https://c.tenor.com/wn2_Qq6flogAAAAC/magical-magic.gif)
 
 ## Usage
 
-To type the list of items once use the slm-typewriter bundle:
+To type the list of items use:
 
 `<slm-typewriter items='["first", "the second", "this is the %22third%22."]' />`
-
-If you want it to be an infinite loop use the slm-loop-typewriter bundle:
-
-`<slm-loop-typewriter items='["first", "the second", "is this the %22third%22?"]' />`
-
-Only use the combined bundle if you really need both web components at once (individual bundles are ~30% less in size). The included css file is optional and only an example how to make this effect look better.
 
 ## Options
 
@@ -33,7 +27,7 @@ Browsers with native custom element support. I do not offer IE11 support, but yo
 
 ## Customisation
 
-These web components only support basic customisations, but I plan to make some improvements soon. If you need to do something more advanced, you can look at how util-typewriter.js works and make your flavour.
+This web component only supports basic customisations. If you need to do something more advanced, you can look at how my util-typewriter repository works and make your flavour.
 
 ## License
 

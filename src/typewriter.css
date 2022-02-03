@@ -8,12 +8,10 @@
     }
 }
 
-slm-loop-typewriter,
 slm-typewriter {
     position: relative;
 }
 
-slm-loop-typewriter::after,
 slm-typewriter::after {
     animation: blink 0.5s linear infinite;
     border-right: 4px solid currentColor;

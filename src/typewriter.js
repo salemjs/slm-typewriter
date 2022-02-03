@@ -1,4 +1,4 @@
-import {type} from './util-typewriter.js';
+import {type} from './util-typewriter/util-typewriter.js';
 
 class SlmTypewriterElement extends HTMLElement {
     async connectedCallback() {

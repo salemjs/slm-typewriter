@@ -1,4 +1,8 @@
-# slm-typewriter changelog
+# &lt;slm-typewriter&gt; element changelog
+
+## 1.3.0 - 03/02/2022
+
+-   Move slm-loop-typewriter element into a separate repository
 
 ## 1.2.0 - 03/02/2022
 
